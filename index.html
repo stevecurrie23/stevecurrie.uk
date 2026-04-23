@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steve Currie — Actor & Commercial Model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0d0d;
+      --bg2:       #141414;
+      --bg3:       #1a1a1a;
+      --border:    rgba(255,255,255,0.07);
+      --accent:    #c8a96e;
+      --accent2:   #a08050;
+      --text:      #e8e4de;
+      --muted:     #888880;
+      --faint:     rgba(200,169,110,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    .accent { color: var(--accent); }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 3rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,169,110,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,169,110,0.04) 0%, transparent 60%),
+        linear-gradient(160deg, #0d0d0d 0%, #111010 50%, #0f0e0d 100%);
+    }
+
+    .hero-line {
+      position: absolute;
+      top: 0;
+      left: 3rem;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
+      opacity: 0.2;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      animation: fadeUp 1.2s ease both;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--accent2);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3rem;
+      position: relative;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--accent2);
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* SHOWREEL */
+    .showreel-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .showreel-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .showreel-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--bg3);
+    }
+
+    .placeholder-icon {
+      width: 60px;
+      height: 60px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .placeholder-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--accent);
+      margin-left: 3px;
+    }
+
+    .placeholder-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      aspect-ratio: 3/4;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(200,169,110,0.05));
+    }
+
+    .photo-placeholder {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .about-text p {
+      color: rgba(232,228,222,0.8);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* STATS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .stat {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* CREDITS */
+    .credits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .credits-col h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .credits-list {
+      list-style: none;
+    }
+
+    .credits-list li {
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.9rem;
+      color: rgba(232,228,222,0.75);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .credits-list li:hover { color: var(--text); }
+
+    .credits-list li::before {
+      content: '';
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .credits-note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* VOICEOVER */
+    .vo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .vo-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+
+    .vo-card:hover { border-color: var(--accent2); }
+
+    .vo-card-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .vo-card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    .vo-player-placeholder {
+      width: 100%;
+      height: 48px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .play-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover { background: var(--faint); }
+
+    .play-btn svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--accent);
+      margin-left: 2px;
+    }
+
+    .vo-player-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* PHYSICAL */
+    .physical-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .physical-item {
+      background: var(--bg2);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .physical-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    .physical-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* AGENCIES */
+    .agencies-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .agency-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .agency-card:hover { border-color: var(--accent2); }
+
+    .agency-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .agency-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .spotlight-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .spotlight-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--bg2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-intro p {
+      color: rgba(232,228,222,0.7);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-item-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .contact-item-value {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .contact-item-value a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-value a:hover { color: var(--accent); }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(136,136,128,0.5);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      .about-grid,
+      .credits-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { aspect-ratio: 4/3; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stat { border-bottom: 1px solid var(--border); }
+      .physical-grid { grid-template-columns: repeat(3, 1fr); }
+      .vo-grid { grid-template-columns: 1fr; }
+      .agencies-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Steve Currie</a>
+    <ul class="nav-links">
+      <li><a href="#showreel">Showreel</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#credits">Credits</a></li>
+      <li><a href="#voiceover">Voiceover</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-line"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Actor &amp; Commercial Model</span>
+      <h1>Steve<br /><span class="accent">Currie</span></h1>
+      <p class="hero-sub">London &nbsp;·&nbsp; Available Internationally</p>
+      <a href="#showreel" class="hero-cta">View Showreel</a>
+    </div>
+  </section>
+
+  <!-- SHOWREEL -->
+  <section id="showreel">
+    <div class="section-inner fade-in">
+      <div class="section-label">Showreel</div>
+      <h2>On Screen</h2>
+      <div class="showreel-wrap" style="margin-top: 2rem;">
+        <!-- Replace the placeholder below with an iframe when your Vimeo reel is ready:
+             <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
+        -->
+        <div class="showreel-placeholder">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="placeholder-text">Showreel coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-photo fade-in">
+          <!-- Replace with: <img src="your-photo.jpg" alt="Steve Currie" style="width:100%;height:100%;object-fit:cover;" /> -->
+          <span class="photo-placeholder">Photo</span>
+        </div>
+        <div class="about-text fade-in">
+          <div class="section-label">About</div>
+          <h2>Experience<br /><span class="accent">you can see</span></h2>
+          <p>I'm Steve Currie — a London-based actor, commercial model, and voiceover artist with over a decade of work across TV commercials, corporate productions, editorial campaigns, and broadcast drama.</p>
+          <p>At 48, I'm regularly cast in dad and family roles, which makes sense — I'm a father myself, and that kind of authenticity tends to read on camera. I bring a natural, grounded presence to every brief, and I'm comfortable in front of a lens in a way that comes from real experience rather than training alone. I'm also a working photographer, which means I understand how a shoot operates from both sides.</p>
+          <p>I've worked with some of the UK's most recognised brands across broadcast, digital, and print, and I've taken on international projects in mainland Europe and beyond. I take direction well, I'm reliable on set, and I don't make it complicated.</p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-value">10+</span>
+              <span class="stat-label">Years experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">30+</span>
+              <span class="stat-label">Brand credits</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">Intl.</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">4</span>
+              <span class="stat-label">Agencies</span>
+            </div>
+          </div>
+
+          <!-- Physical Details -->
+          <div class="physical-grid" style="margin-top: 2rem;">
+            <div class="physical-item">
+              <span class="physical-value">6'2"</span>
+              <span class="physical-label">Height</span>
+            </div>
+            <div class="physical-item">
+              <span class="physical-value">48–50</span>
+              <span class="physical-label">Chest</span>
+            </div>
+            <div class="physical-item">
+              <span class="physical-value">40"</span>
+              <span class="physical-label">Waist</span>
+            </div>
+            <div class="physical-item">
+              <span class="physical-value">33"</span>
+              <span class="physical-label">Inside leg</span>
+            </div>
+            <div class="physical-item">
+              <span class="physical-value">Green/<wbr>Brown</span>
+              <span class="physical-label">Eyes</span>
+            </div>
+            <div class="physical-item">
+              <span class="physical-value">Shaved</span>
+              <span class="physical-label">Hair</span>
+            </div>
+          </div>
+          <p style="font-size:0.75rem; color: var(--muted); margin-top: 0.75rem;">Short beard. Happy to shave for roles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDITS -->
+  <section id="credits">
+    <div class="section-inner fade-in">
+      <div class="section-label">Selected Credits</div>
+      <h2>Brands &amp; <span class="accent">Productions</span></h2>
+      <div class="credits-grid" style="margin-top: 2rem;">
+        <div class="credits-col">
+          <h3>Acting &amp; Commercial</h3>
+          <ul class="credits-list">
+            <li>BBC EastEnders <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">BBC One</span></li>
+            <li>Britain's Most Evil Killers <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV — Police Officer</span></li>
+            <li>Waitrose</li>
+            <li>BT Business <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Voiceover</span></li>
+            <li>PepsiCo <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Corporate</span></li>
+            <li>Paddy Power <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial — Mallorca</span></li>
+            <li>Eurostar <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Cologne &amp; Paris</span></li>
+            <li>Just Eat</li>
+            <li>Warburtons</li>
+            <li>Cineworld</li>
+            <li>Penguin Publishers</li>
+            <li>Compound Health</li>
+            <li>Weight Watchers</li>
+            <li>Young Minds</li>
+            <li>Ministry of Justice</li>
+            <li>Esso</li>
+            <li>The Shard</li>
+          </ul>
+        </div>
+        <div class="credits-col">
+          <h3>Modelling</h3>
+          <ul class="credits-list">
+            <li>Wagamama</li>
+            <li>Cancer Research UK</li>
+            <li>Virgin Experiences</li>
+            <li>Remington</li>
+            <li>Club Wembley</li>
+            <li>Turtle Bay</li>
+            <li>Bella Pasta</li>
+            <li>Numan</li>
+            <li>Lightroom</li>
+            <li>Zizzi</li>
+            <li>Very</li>
+          </ul>
+          <p class="credits-note">International projects include work in France, Germany, Spain, and Mallorca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICEOVER -->
+  <section id="voiceover">
+    <div class="section-inner fade-in">
+      <div class="section-label">Voiceover</div>
+      <h2>Voice <span class="accent">Demos</span></h2>
+      <p style="color: var(--muted); margin-bottom: 2.5rem; max-width: 540px; font-size:0.9rem;">Commercial voiceover experience across broadcast and corporate productions, including BT Business and PepsiCo. Demo clips below.</p>
+      <div class="vo-grid">
+        <div class="vo-card">
+          <div class="vo-card-label">Demo 01</div>
+          <div class="vo-card-title">Commercial Reel</div>
+          <div class="vo-player-placeholder">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span>Demo coming soon</span>
+          </div>
+        </div>
+        <div class="vo-card">
+          <div class="vo-card-label">Demo 02</div>
+          <div class="vo-card-title">Corporate &amp; Narration</div>
+          <div class="vo-player-placeholder">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span>Demo coming soon</span>
+          </div>
+        </div>
+        <div class="vo-card">
+          <div class="vo-card-label">Demo 03</div>
+          <div class="vo-card-title">Character &amp; Dramatic</div>
+          <div class="vo-player-placeholder">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span>Demo coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENCIES -->
+  <section id="agencies">
+    <div class="section-inner fade-in">
+      <div class="section-label">Representation</div>
+      <h2>Agencies &amp; <span class="accent">Spotlight</span></h2>
+      <div class="agencies-grid" style="margin-top: 2rem;">
+        <div class="agency-card">
+          <div class="agency-name">UGLI</div>
+          <div class="agency-label">Talent Agency</div>
+        </div>
+        <div class="agency-card">
+          <div class="agency-name">Diversity Agency</div>
+          <div class="agency-label">Talent Agency</div>
+        </div>
+        <div class="agency-card">
+          <div class="agency-name">Sandra Reynolds</div>
+          <div class="agency-label">Talent Agency</div>
+        </div>
+        <div class="agency-card">
+          <div class="agency-name">MS Represents</div>
+          <div class="agency-label">Talent Agency</div>
+        </div>
+      </div>
+      <!-- Replace # with your actual Spotlight URL -->
+      <a href="#" class="spotlight-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Spotlight Profile
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-intro fade-in">
+          <div class="section-label">Contact</div>
+          <h2>Get in <span class="accent">Touch</span></h2>
+          <p>For casting enquiries, bookings, and commercial briefs, get in touch directly or through one of my agencies.</p>
+          <p>I'm based in London and available for UK and international projects.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/stevecurrie23" target="_blank" rel="noopener" class="social-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+        <div class="contact-details fade-in">
+          <div class="contact-item">
+            <span class="contact-item-label">Phone</span>
+            <span class="contact-item-value">
+              <a href="tel:+447845178212">07845 178 212</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-value">
+              <a href="mailto:steve@stevecurrie.co.uk">steve@stevecurrie.co.uk</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Based</span>
+            <span class="contact-item-value">London, UK</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Availability</span>
+            <span class="contact-item-value">UK &amp; International</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Steve Currie — Actor &amp; Commercial Model</span>
+    <span class="footer-note">stevecurrie.uk</span>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
