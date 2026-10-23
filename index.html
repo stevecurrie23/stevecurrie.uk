@@ -416,7 +416,7 @@
     /* STATS */
     .stats-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
       border: 1px solid var(--border);
       margin-top: 3rem;
@@ -672,7 +672,9 @@
       transition: border-color 0.3s;
     }
 
+    a.agency-card { display: block; text-decoration: none; color: inherit; }
     .agency-card:hover { border-color: var(--accent2); }
+    .agency-card:hover .agency-label { color: var(--accent); }
 
     .agency-name {
       font-family: 'Bebas Neue', sans-serif;
@@ -840,8 +842,9 @@
       .credits-grid,
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-photo { aspect-ratio: 4/3; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .stat { border-bottom: 1px solid var(--border); }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .stat { border-bottom: 1px solid var(--border); padding: 1.25rem 0.9rem; min-width: 0; }
+      .about-text, .about-photo { min-width: 0; }
       .physical-grid { grid-template-columns: repeat(3, 1fr); }
       .vo-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
@@ -905,16 +908,11 @@
         </div>
         <div class="about-text fade-in">
           <div class="section-label">About</div>
-          <h2>Experience<br /><span class="accent">you can see</span></h2>
-          <p>I'm Steve Currie — a London-based actor, commercial model, and voiceover artist working across TV commercials, corporate productions, editorial campaigns, and broadcast drama.</p>
-          <p>At 48, I'm regularly cast in dad and family roles, which makes sense — I'm a father myself, and that kind of authenticity tends to read on camera. I bring a natural, grounded presence to every brief, and I'm comfortable in front of a lens in a way that comes from real experience rather than training alone. I'm also a working photographer, which means I understand how a shoot operates from both sides.</p>
-          <p>I've worked with some of the UK's most recognised brands across broadcast, digital, and print, and I've taken on international projects in mainland Europe and beyond. I take direction well, I'm reliable on set, and I don't make it complicated.</p>
+          <h2>A bit<br /><span class="accent">about me</span></h2>
+          <p>I'm Steve Currie, a London-based actor, commercial model and voiceover artist. I've worked with some of the UK's most recognised brands on TV commercials, corporate productions, editorial campaigns and broadcast drama, in the UK and abroad.</p>
+          <p>My background in photography means I'm more than comfortable on set. I know what it takes to get the job done. I'm reliable, and I can handle long days and last-minute changes!</p>
 
           <div class="stats-row">
-            <div class="stat">
-              <span class="stat-value">10+</span>
-              <span class="stat-label">Years experience</span>
-            </div>
             <div class="stat">
               <span class="stat-value">30+</span>
               <span class="stat-label">Brand credits</span>
@@ -1007,13 +1005,13 @@
           <h3>Acting</h3>
           <ul class="credits-list">
             <li>EastEnders <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">BBC One</span></li>
-            <li>Arsenal FC x Meta</li>
+            <li>Arsenal FC x Meta <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
             <li>Argos <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
-            <li>Checkatrade</li>
+            <li>Checkatrade <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
             <li>Waitrose <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
-            <li>Warburtons</li>
+            <li>Warburtons <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
             <li>Paddy Power <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial — Mallorca</span></li>
-            <li>BT Business <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Voiceover</span></li>
+            <li>BT Business</li>
             <li>Ministry of Justice <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
             <li>Britain's Most Evil Killers <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV — Police Officer</span></li>
           </ul>
@@ -1021,9 +1019,11 @@
         <div class="credits-col">
           <h3>Modelling</h3>
           <ul class="credits-list">
+            <li>Runna</li>
+            <li>Chequp</li>
             <li>Wagamama</li>
             <li>Esso</li>
-            <li>Eurostar <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Cologne &amp; Paris</span></li>
+            <li>Eurostar</li>
             <li>Virgin Experiences</li>
             <li>Cancer Research UK</li>
             <li>Penguin Publishers</li>
@@ -1126,22 +1126,22 @@
       <div class="section-label">Representation</div>
       <h2>Agencies &amp; <span class="accent">Spotlight</span></h2>
       <div class="agencies-grid" style="margin-top: 2rem;">
-        <div class="agency-card">
+        <a class="agency-card" href="https://www.ugly.org/2016/men/men-2/2752-steve-currie?ic=1" target="_blank" rel="noopener">
           <div class="agency-name">Ugly</div>
-          <div class="agency-label">Talent Agency</div>
-        </div>
-        <div class="agency-card">
+          <div class="agency-label">View my card &#8599;</div>
+        </a>
+        <a class="agency-card" href="https://www.thediversity.agency/mature/men/1593-steve-currie-mature-model" target="_blank" rel="noopener">
           <div class="agency-name">Diversity Agency</div>
-          <div class="agency-label">Talent Agency</div>
-        </div>
-        <div class="agency-card">
+          <div class="agency-label">View my card &#8599;</div>
+        </a>
+        <a class="agency-card" href="https://www.sandrareynolds.co.uk/model/steve-currie" target="_blank" rel="noopener">
           <div class="agency-name">Sandra Reynolds</div>
-          <div class="agency-label">Talent Agency</div>
-        </div>
-        <div class="agency-card">
+          <div class="agency-label">View my card &#8599;</div>
+        </a>
+        <a class="agency-card" href="https://www.msrepresents.com/artists/men/1566-steve-currie/" target="_blank" rel="noopener">
           <div class="agency-name">MS Represents</div>
-          <div class="agency-label">Talent Agency</div>
-        </div>
+          <div class="agency-label">View my card &#8599;</div>
+        </a>
       </div>
       <a href="https://app.spotlight.com/7654-6727-4610" target="_blank" rel="noopener" class="spotlight-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
