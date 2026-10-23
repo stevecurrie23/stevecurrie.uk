@@ -100,10 +100,25 @@
     .hero-bg {
       position: absolute;
       inset: 0;
+      background-color: #0d0d0d;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('steve-currie-hero.jpg');
+      background-repeat: no-repeat;
+      background-position: 62% center;
+      background-size: cover;
+      filter: grayscale(0.15) contrast(1.02);
+    }
+
+    .hero-veil {
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,169,110,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,169,110,0.04) 0%, transparent 60%),
-        linear-gradient(160deg, #0d0d0d 0%, #111010 50%, #0f0e0d 100%);
+        linear-gradient(to right, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.88) 28%, rgba(13,13,13,0.6) 52%, rgba(13,13,13,0.34) 78%, rgba(13,13,13,0.3) 100%),
+        linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.55) 25%, transparent 55%);
     }
 
     .hero-line {
@@ -122,15 +137,23 @@
       animation: fadeUp 1.2s ease both;
     }
 
-    .hero-tag {
+    .hero-role {
       display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.45rem, 3.4vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.1rem;
       border-bottom: 1px solid var(--accent2);
+    }
+
+    .hero-role .sep {
+      color: var(--accent);
+      margin: 0 0.55em;
     }
 
     h1 {
@@ -235,6 +258,26 @@
       border: none;
     }
 
+    .reel-fallback {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .reel-fallback a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .reel-fallback a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
     .showreel-placeholder {
       position: absolute;
       inset: 0;
@@ -294,6 +337,66 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, transparent 60%, rgba(200,169,110,0.05));
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* RECENT WORK */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+
+    .work-col {
+      display: grid;
+      gap: 1.5rem;
+      align-content: start;
+    }
+
+    .work-item {
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      overflow: hidden;
+    }
+
+    .work-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .work-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .work-caption {
+      padding: 1rem 1.25rem 1.15rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-client {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    .work-role {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
     }
 
     .photo-placeholder {
@@ -465,6 +568,61 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    .vo-tracks { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .vo-track {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.75rem 0.9rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .vo-track .play-btn {
+      width: 34px;
+      height: 34px;
+      background: none;
+      padding: 0;
+      font: inherit;
+    }
+
+    .vo-track .play-btn svg { width: 12px; height: 12px; }
+    .vo-track .play-btn .icon-pause { display: none; margin-left: 0; }
+    .vo-track.playing .play-btn { background: var(--faint); }
+    .vo-track.playing .play-btn .icon-play { display: none; }
+    .vo-track.playing .play-btn .icon-pause { display: block; }
+
+    .vo-track-name {
+      font-size: 0.8rem;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+      line-height: 1.3;
+    }
+
+    .vo-progress {
+      height: 3px;
+      background: var(--border);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .vo-progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      background: var(--accent);
+    }
+
+    .vo-time {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
 
     /* PHYSICAL */
@@ -673,6 +831,11 @@
       .nav-links { display: none; }
       section { padding: 4rem 1.5rem; }
       .hero { padding: 0 1.5rem 4rem; }
+      .hero-photo { background-position: 68% center; background-size: cover; }
+      .hero-veil {
+        background:
+          linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.92) 28%, rgba(13,13,13,0.62) 60%, rgba(13,13,13,0.5) 100%);
+      }
       .about-grid,
       .credits-grid,
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -681,6 +844,7 @@
       .stat { border-bottom: 1px solid var(--border); }
       .physical-grid { grid-template-columns: repeat(3, 1fr); }
       .vo-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
       .agencies-grid { grid-template-columns: repeat(2, 1fr); }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
@@ -694,6 +858,7 @@
     <ul class="nav-links">
       <li><a href="#showreel">Showreel</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#credits">Credits</a></li>
       <li><a href="#voiceover">Voiceover</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -703,10 +868,12 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-bg"></div>
+    <div class="hero-photo"></div>
+    <div class="hero-veil"></div>
     <div class="hero-line"></div>
     <div class="hero-content">
-      <span class="hero-tag">Actor &amp; Commercial Model</span>
       <h1>Steve<br /><span class="accent">Currie</span></h1>
+      <p class="hero-role">Actor<span class="sep">·</span>Commercial Model</p>
       <p class="hero-sub">London &nbsp;·&nbsp; Available Internationally</p>
       <a href="#showreel" class="hero-cta">View Showreel</a>
     </div>
@@ -718,16 +885,14 @@
       <div class="section-label">Showreel</div>
       <h2>On Screen</h2>
       <div class="showreel-wrap" style="margin-top: 2rem;">
-        <!-- Replace the placeholder below with an iframe when your Vimeo reel is ready:
-             <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
-        -->
-        <div class="showreel-placeholder">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <span class="placeholder-text">Showreel coming soon</span>
-        </div>
+        <iframe
+          src="https://www.youtube.com/embed/_YuXrWfB-bc"
+          title="Steve Currie — Showreel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
       </div>
+      <p class="reel-fallback"><a href="https://youtu.be/_YuXrWfB-bc" target="_blank" rel="noopener">Watch on YouTube</a></p>
     </div>
   </section>
 
@@ -736,13 +901,12 @@
     <div class="section-inner">
       <div class="about-grid">
         <div class="about-photo fade-in">
-          <!-- Replace with: <img src="your-photo.jpg" alt="Steve Currie" style="width:100%;height:100%;object-fit:cover;" /> -->
-          <span class="photo-placeholder">Photo</span>
+          <img src="steve-currie-portrait.jpg" alt="Steve Currie, London-based actor and commercial model" />
         </div>
         <div class="about-text fade-in">
           <div class="section-label">About</div>
           <h2>Experience<br /><span class="accent">you can see</span></h2>
-          <p>I'm Steve Currie — a London-based actor, commercial model, and voiceover artist with over a decade of work across TV commercials, corporate productions, editorial campaigns, and broadcast drama.</p>
+          <p>I'm Steve Currie — a London-based actor, commercial model, and voiceover artist working across TV commercials, corporate productions, editorial campaigns, and broadcast drama.</p>
           <p>At 48, I'm regularly cast in dad and family roles, which makes sense — I'm a father myself, and that kind of authenticity tends to read on camera. I bring a natural, grounded presence to every brief, and I'm comfortable in front of a lens in a way that comes from real experience rather than training alone. I'm also a working photographer, which means I understand how a shoot operates from both sides.</p>
           <p>I've worked with some of the UK's most recognised brands across broadcast, digital, and print, and I've taken on international projects in mainland Europe and beyond. I take direction well, I'm reliable on set, and I don't make it complicated.</p>
 
@@ -772,7 +936,7 @@
               <span class="physical-label">Height</span>
             </div>
             <div class="physical-item">
-              <span class="physical-value">48–50</span>
+              <span class="physical-value">48–50"</span>
               <span class="physical-label">Chest</span>
             </div>
             <div class="physical-item">
@@ -798,6 +962,41 @@
     </div>
   </section>
 
+  <!-- RECENT WORK -->
+  <section id="work">
+    <div class="section-inner fade-in">
+      <div class="section-label">Campaigns</div>
+      <h2>Recent <span class="accent">Work</span></h2>
+      <div class="work-grid">
+        <div class="work-col">
+          <div class="work-item">
+            <img src="runna-billboard.jpg" alt="Steve Currie on a Runna campaign billboard at a London Underground station" loading="lazy" />
+            <div class="work-caption">
+              <span class="work-client">Runna</span>
+              <span class="work-role">Out-of-home campaign &middot; London Underground</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-col">
+          <div class="work-item">
+            <img src="penguin-audiobooks.jpg" alt="Steve Currie listening to an audiobook for a Penguin Audiobooks campaign" loading="lazy" />
+            <div class="work-caption">
+              <span class="work-client">Penguin Audiobooks</span>
+              <span class="work-role">Stills campaign</span>
+            </div>
+          </div>
+          <div class="work-item">
+            <img src="chequp-london.jpg" alt="Steve Currie with a group around a garden table for a Chequp campaign" loading="lazy" />
+            <div class="work-caption">
+              <span class="work-client">Chequp</span>
+              <span class="work-role">Lifestyle campaign &middot; London</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CREDITS -->
   <section id="credits">
     <div class="section-inner fade-in">
@@ -805,45 +1004,36 @@
       <h2>Brands &amp; <span class="accent">Productions</span></h2>
       <div class="credits-grid" style="margin-top: 2rem;">
         <div class="credits-col">
-          <h3>Acting &amp; Commercial</h3>
+          <h3>Acting</h3>
           <ul class="credits-list">
-            <li>BBC EastEnders <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">BBC One</span></li>
-            <li>Britain's Most Evil Killers <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV — Police Officer</span></li>
-            <li>Waitrose</li>
-            <li>BT Business <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Voiceover</span></li>
-            <li>PepsiCo <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Corporate</span></li>
-            <li>Paddy Power <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial — Mallorca</span></li>
-            <li>Eurostar <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Cologne &amp; Paris</span></li>
-            <li>Just Eat</li>
+            <li>EastEnders <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">BBC One</span></li>
+            <li>Arsenal FC x Meta</li>
+            <li>Argos <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
+            <li>Checkatrade</li>
+            <li>Waitrose <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
             <li>Warburtons</li>
-            <li>Cineworld</li>
-            <li>Penguin Publishers</li>
-            <li>Compound Health</li>
-            <li>Weight Watchers</li>
-            <li>Young Minds</li>
-            <li>Ministry of Justice</li>
-            <li>Esso</li>
-            <li>The Shard</li>
+            <li>Paddy Power <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial — Mallorca</span></li>
+            <li>BT Business <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Voiceover</span></li>
+            <li>Ministry of Justice <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV Commercial</span></li>
+            <li>Britain's Most Evil Killers <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">TV — Police Officer</span></li>
           </ul>
         </div>
         <div class="credits-col">
           <h3>Modelling</h3>
           <ul class="credits-list">
             <li>Wagamama</li>
-            <li>Cancer Research UK</li>
+            <li>Esso</li>
+            <li>Eurostar <span style="margin-left:auto; font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">Cologne &amp; Paris</span></li>
             <li>Virgin Experiences</li>
-            <li>Remington</li>
-            <li>Club Wembley</li>
-            <li>Turtle Bay</li>
-            <li>Bella Pasta</li>
+            <li>Cancer Research UK</li>
+            <li>Penguin Publishers</li>
             <li>Numan</li>
-            <li>Lightroom</li>
             <li>Zizzi</li>
-            <li>Very</li>
           </ul>
           <p class="credits-note">International projects include work in France, Germany, Spain, and Mallorca.</p>
         </div>
       </div>
+      <p class="credits-note" style="margin-top:2rem;">Full credits on <a href="https://app.spotlight.com/7654-6727-4610" target="_blank" rel="noopener" style="color:var(--accent);">Spotlight</a>.</p>
     </div>
   </section>
 
@@ -856,32 +1046,74 @@
       <div class="vo-grid">
         <div class="vo-card">
           <div class="vo-card-label">Demo 01</div>
-          <div class="vo-card-title">Commercial Reel</div>
-          <div class="vo-player-placeholder">
-            <div class="play-btn">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <div class="vo-card-title">Commercial</div>
+          <div class="vo-tracks">
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Technology brand"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Technology brand</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">0:30</span>
+              <audio preload="none" src="vo-commercial-tech-brand.mp3"></audio>
             </div>
-            <span>Demo coming soon</span>
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Online ad"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Online ad</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">0:21</span>
+              <audio preload="none" src="vo-online-ad.mp3"></audio>
+            </div>
           </div>
         </div>
         <div class="vo-card">
           <div class="vo-card-label">Demo 02</div>
           <div class="vo-card-title">Corporate &amp; Narration</div>
-          <div class="vo-player-placeholder">
-            <div class="play-btn">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <div class="vo-tracks">
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Explainer video"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Explainer video</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">0:26</span>
+              <audio preload="none" src="vo-explainer-video.mp3"></audio>
             </div>
-            <span>Demo coming soon</span>
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Corporate e-learning"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Corporate e-learning</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">0:59</span>
+              <audio preload="none" src="vo-corporate-elearning.mp3"></audio>
+            </div>
           </div>
         </div>
         <div class="vo-card">
           <div class="vo-card-label">Demo 03</div>
-          <div class="vo-card-title">Character &amp; Dramatic</div>
-          <div class="vo-player-placeholder">
-            <div class="play-btn">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <div class="vo-card-title">Audiobook</div>
+          <div class="vo-tracks">
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Detective mystery"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Detective mystery</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">1:20</span>
+              <audio preload="none" src="vo-audiobook-detective-mystery.mp3"></audio>
             </div>
-            <span>Demo coming soon</span>
+            <div class="vo-track">
+              <button class="play-btn" type="button" aria-label="Play Crime &amp; action"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+              <div>
+                <div class="vo-track-name">Crime &amp; action</div>
+                <div class="vo-progress"><div class="vo-progress-fill"></div></div>
+              </div>
+              <span class="vo-time">1:21</span>
+              <audio preload="none" src="vo-audiobook-crime-action.mp3"></audio>
+            </div>
           </div>
         </div>
       </div>
@@ -895,7 +1127,7 @@
       <h2>Agencies &amp; <span class="accent">Spotlight</span></h2>
       <div class="agencies-grid" style="margin-top: 2rem;">
         <div class="agency-card">
-          <div class="agency-name">UGLI</div>
+          <div class="agency-name">Ugly</div>
           <div class="agency-label">Talent Agency</div>
         </div>
         <div class="agency-card">
@@ -911,8 +1143,7 @@
           <div class="agency-label">Talent Agency</div>
         </div>
       </div>
-      <!-- Replace # with your actual Spotlight URL -->
-      <a href="#" class="spotlight-link">
+      <a href="https://app.spotlight.com/7654-6727-4610" target="_blank" rel="noopener" class="spotlight-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         View Spotlight Profile
       </a>
@@ -979,6 +1210,39 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Voice demo players: one plays at a time
+    const fmt = t => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+    const tracks = [...document.querySelectorAll('.vo-track')];
+    tracks.forEach(track => {
+      const audio = track.querySelector('audio');
+      const btn = track.querySelector('.play-btn');
+      const fill = track.querySelector('.vo-progress-fill');
+      const bar = track.querySelector('.vo-progress');
+      const time = track.querySelector('.vo-time');
+      const total = time.textContent;
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          tracks.forEach(t => { if (t !== track) t.querySelector('audio').pause(); });
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+      audio.addEventListener('play', () => { track.classList.add('playing'); btn.setAttribute('aria-label', 'Pause'); });
+      audio.addEventListener('pause', () => { track.classList.remove('playing'); btn.setAttribute('aria-label', 'Play'); });
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        time.textContent = fmt(audio.currentTime) + ' / ' + total;
+      });
+      audio.addEventListener('ended', () => { fill.style.width = '0'; time.textContent = total; });
+      bar.addEventListener('click', e => {
+        if (!audio.duration) { audio.play(); return; }
+        const r = bar.getBoundingClientRect();
+        audio.currentTime = (e.clientX - r.left) / r.width * audio.duration;
+      });
+    });
   </script>
 
 </body>
